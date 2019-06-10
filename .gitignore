@@ -1,0 +1,50 @@
+## Node.js
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+pids
+logs
+results
+npm-debug.log
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+## Bower
+src/components
+
+## Sass
+.sass-cache
+
+## OS X
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+## Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+## JetBrains
+.idea
