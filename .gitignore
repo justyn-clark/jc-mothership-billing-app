@@ -21,9 +21,6 @@ npm-debug.log
 # production
 /build
 
-## Bower
-src/components
-
 ## Sass
 .sass-cache
 
