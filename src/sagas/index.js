@@ -13,13 +13,13 @@ export function* getUser() {
   try {
     const userData = yield call(request, USER_URL);
     const user = userData.data;
+    yield put(userLoaded(user));
+    yield put(loadBilling());
     const billingData = yield call(
       request,
       ORGANIZATION_URL(userData.data.user.organizationId),
     );
     const billing = billingData.data;
-    yield put(userLoaded(user));
-    yield put(loadBilling());
     yield put(billingLoaded(billing));
   } catch (err) {
     yield put(userLoadingError(err));
