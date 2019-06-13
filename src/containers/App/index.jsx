@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import GlobalStyle from 'global-styles';
-import BillingPage from 'containers/BillingPageContainer/Loadable';
-import PageTemplate from 'containers/PageTemplateContainer/Loadable';
-import TopMenuContainer from 'containers/TopMenuContainer';
+import BillingPage from 'components/BillingPage/Loadable';
+import PageTemplate from 'components/PageTemplate/Loadable';
+import TopMenu from 'components/TopMenu';
 import {
   INDEX_PATH,
   GET_QUOTE_PATH,
@@ -17,7 +17,7 @@ export default function App() {
   return (
     <>
       <Router>
-        <TopMenuContainer />
+        <TopMenu />
         <Switch>
           <Route exact path={INDEX_PATH} component={PageTemplate} />
           <Route path={GET_QUOTE_PATH} component={PageTemplate} />

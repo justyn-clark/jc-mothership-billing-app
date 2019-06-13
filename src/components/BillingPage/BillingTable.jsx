@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import ReactTable from 'react-table';
 import { formatDate } from 'utils/helpers';
 import Locations from 'components/Locations';
@@ -7,8 +8,6 @@ import DocumentsDropdown from 'components/DocumentsDropdown';
 import ArrowDown from 'components/UI/UI.ArrowDown';
 
 const propTypes = {
-  onLoadUser: PropTypes.func,
-  items: PropTypes.object,
   isExpanded: PropTypes.bool,
 };
 
@@ -65,12 +64,9 @@ const columns = [
   },
 ];
 
-const BillingTable = props => {
-  const { onLoadUser, items } = props;
-  useEffect(() => {
-    onLoadUser();
-  }, [onLoadUser]);
-
+const BillingTable = () => {
+  const billing = useSelector(state => state.userInfo.billing);
+  const { items } = billing;
   return (
     <ReactTable
       defaultPageSize={10}

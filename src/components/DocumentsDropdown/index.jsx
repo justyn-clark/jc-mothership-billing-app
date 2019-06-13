@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid';
 import { capFirstLetter } from 'utils/helpers';
 import DropDownWrap from './DropDownWrap';
 
@@ -7,7 +8,7 @@ const DocumentsDropdown = rowInfo => (
     {rowInfo &&
       rowInfo.original.documents.map(item => (
         <a
-          key={Math.random()}
+          key={uuid.v4()}
           href={item.url}
           target="_blank"
           rel="noopener noreferrer"

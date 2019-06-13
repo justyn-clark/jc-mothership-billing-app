@@ -1,22 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import uuid from 'uuid';
 import PlusIcon from 'images/PlusIcon.svg';
 import DropDownWrap from './DropDownWrap';
 
-const propTypes = {
-  billing: PropTypes.object,
-};
-
-const PaymentsDropdown = props => {
-  const {
-    billing: { paymentMethods = {} },
-  } = props;
+const PaymentsDropdown = () => {
+  const billing = useSelector(state => state.userInfo.billing);
+  const { paymentMethods = {} } = billing;
   return (
     <DropDownWrap>
       <div style={{ padding: '2rem' }}>
         {paymentMethods &&
           paymentMethods.cards.map(item => (
-            <li key={Math.random()}>
+            <li key={uuid.v4()}>
               <input name={item.brand} type="checkbox" /> {item.brand} *
               {item.last4}
             </li>
@@ -39,5 +35,4 @@ const PaymentsDropdown = props => {
   );
 };
 
-PaymentsDropdown.propTypes = propTypes;
 export default PaymentsDropdown;

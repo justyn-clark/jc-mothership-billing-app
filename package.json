@@ -20,7 +20,8 @@
     "redux-saga": "^1.0.2",
     "reselect": "^4.0.0",
     "sanitize.css": "^10.0.0",
-    "styled-components": "^4.3.0"
+    "styled-components": "^4.3.0",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import Search from 'components/Search';
 import PaymentsDropdown from 'components/PaymentsDropdown';
 import ArrowDown from 'components/UI/UI.ArrowDown';
 import SearchIcon from 'images/SearchIcon.svg';
 import Wrapper from './Wrapper';
 
-const propTypes = {
-  billing: PropTypes.object,
-};
-
-const BillingPaymentHeader = props => {
+const BillingPaymentHeader = () => {
   const [isShowPaymentMenu, setShowPaymentMenu] = useState(false);
-  const {
-    billing: { balance },
-    billing: { paymentMethods = {} },
-  } = props;
+  const billing = useSelector(state => state.userInfo.billing);
+  const { balance, paymentMethods = {} } = billing;
   return (
     <Wrapper>
       <div className="payments">
@@ -32,7 +26,7 @@ const BillingPaymentHeader = props => {
             color="black"
             onClick={() => setShowPaymentMenu(!isShowPaymentMenu)}
           />
-          {isShowPaymentMenu && <PaymentsDropdown {...props} />}
+          {isShowPaymentMenu && <PaymentsDropdown billing={billing} />}
         </div>
       </div>
       <div className="search">
@@ -43,5 +37,4 @@ const BillingPaymentHeader = props => {
   );
 };
 
-BillingPaymentHeader.propTypes = propTypes;
 export default BillingPaymentHeader;

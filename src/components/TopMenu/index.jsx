@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import LogOutWrap from 'components/TopMenu/LogOutWrap';
 import StyledUl from 'components/TopMenu/StyledUl';
 import ArrowDown from 'components/UI/UI.ArrowDown';
@@ -13,12 +13,8 @@ import LinkWrap from './LinkWrap';
 import Link from './Link';
 import StyledHeader from './StyledHeader';
 
-const propTypes = {
-  user: PropTypes.object,
-};
-
-const TopBar = props => {
-  const { user } = props;
+const TopBar = () => {
+  const user = useSelector(state => state.userInfo.user);
   return (
     <StyledHeader>
       <Link exact to="/" className="logo">
@@ -51,11 +47,10 @@ const TopBar = props => {
       </LinkWrap>
       <LogOutWrap>
         <h3>{user && user.firstName}</h3>
-        <ArrowDown onClick={() => console.log('toggle logout')} />
+        <ArrowDown />
       </LogOutWrap>
     </StyledHeader>
   );
 };
 
-TopBar.propTypes = propTypes;
 export default TopBar;
