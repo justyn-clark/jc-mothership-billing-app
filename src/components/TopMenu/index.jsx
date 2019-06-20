@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { makeSelectUser } from 'selectors';
 import LogOutWrap from 'components/TopMenu/LogOutWrap';
 import StyledUl from 'components/TopMenu/StyledUl';
 import ArrowDown from 'components/UI/UI.ArrowDown';
@@ -14,7 +15,7 @@ import Link from './Link';
 import StyledHeader from './StyledHeader';
 
 const TopBar = () => {
-  const user = useSelector(state => state.userInfo.user);
+  const user = useSelector(makeSelectUser);
   return (
     <StyledHeader>
       <Link exact to="/" className="logo">

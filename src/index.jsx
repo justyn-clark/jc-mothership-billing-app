@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import history from 'utils/history';
 import App from 'containers/App';
+import { registerObserver } from 'react-perf-devtool';
 import configureStore from 'store/configureStore';
 import 'sanitize.css';
 
@@ -16,3 +17,5 @@ ReactDOM.render(
   </Provider>,
   MOUNT_NODE,
 );
+
+registerObserver();

@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Search from 'components/Search';
 import PaymentsDropdown from 'components/PaymentsDropdown';
+import { makeSelectBilling } from 'selectors';
 import ArrowDown from 'components/UI/UI.ArrowDown';
 import SearchIcon from 'images/SearchIcon.svg';
 import Wrapper from './Wrapper';
 
 const BillingPaymentHeader = () => {
   const [isShowPaymentMenu, setShowPaymentMenu] = useState(false);
-  const billing = useSelector(state => state.userInfo.billing);
+  const billing = useSelector(makeSelectBilling);
+  const handleTogglePaymentMenu = () => setShowPaymentMenu(!isShowPaymentMenu);
+
   const { balance, paymentMethods = {} } = billing;
   return (
     <Wrapper>
@@ -22,10 +25,7 @@ const BillingPaymentHeader = () => {
                 paymentMethods.bankAccounts[0].last4
               }`}
           </span>
-          <ArrowDown
-            color="black"
-            onClick={() => setShowPaymentMenu(!isShowPaymentMenu)}
-          />
+          <ArrowDown color="black" onClick={handleTogglePaymentMenu} />
           {isShowPaymentMenu && <PaymentsDropdown billing={billing} />}
         </div>
       </div>

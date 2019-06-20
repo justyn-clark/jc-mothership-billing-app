@@ -1,15 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { makeSelectItems } from 'selectors';
 import ReactTable from 'react-table';
 import { formatDate } from 'utils/helpers';
 import Locations from 'components/Locations';
 import DocumentsDropdown from 'components/DocumentsDropdown';
 import ArrowDown from 'components/UI/UI.ArrowDown';
-
-const propTypes = {
-  isExpanded: PropTypes.bool,
-};
 
 const columns = [
   {
@@ -64,22 +60,23 @@ const columns = [
   },
 ];
 
+const renderSubComponent = rowInfo => <DocumentsDropdown {...rowInfo} />;
+const renderItems = items => items && Object.values(items);
+
 const BillingTable = () => {
-  const billing = useSelector(state => state.userInfo.billing);
-  const { items } = billing;
+  const items = useSelector(makeSelectItems);
   return (
     <ReactTable
       defaultPageSize={10}
       minRows={3}
       pageSizeOptions={[20, 30, 50, 100, 200, 500]}
-      data={items && Object.values(items)}
+      data={renderItems(items)}
       columns={columns}
       className="-highlight"
       showPagination={false}
-      SubComponent={rowInfo => <DocumentsDropdown {...rowInfo} />}
+      SubComponent={renderSubComponent}
     />
   );
 };
 
-BillingTable.propTypes = propTypes;
 export default BillingTable;

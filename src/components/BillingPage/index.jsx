@@ -10,7 +10,7 @@ const BillingPage = () => {
 
   useEffect(() => {
     dispatch(loadUser());
-  }, [dispatch]);
+  });
 
   return (
     <>
